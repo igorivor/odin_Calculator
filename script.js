@@ -1,3 +1,17 @@
+let num1 = 0;
+let num2 = 0;
+const btn_Numbers = document.querySelectorAll("#btn_Number");
+const display = document.querySelector("#display");
+
+btn_Numbers.forEach(element => {
+    element.addEventListener("click", (event) =>{
+        num1 = event.target.textContent;
+        display.value = num1;
+    });
+});
+
+
+
 const add = ((num1, num2) => num1 + num2);
 const sub = ((num1, num2) => num1 - num2);
 const mul = ((num1, num2) => num1 * num2);
