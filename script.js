@@ -1,16 +1,43 @@
+let num = "";
 let num1 = 0;
-let num2 = 0;
+let operator = "";
 const btn_Numbers = document.querySelectorAll("#btn_Number");
 const display = document.querySelector("#display");
+const btn_operator = document.querySelectorAll("#btn_Operator");
+const equal = document.querySelector("#equal");
 
-btn_Numbers.forEach(element => {
-    element.addEventListener("click", (event) =>{
-        num1 = event.target.textContent;
-        display.value = num1;
+btn_Numbers.forEach(number => {
+    number.addEventListener("click", (event) =>{
+        num += event.target.textContent;
+        display.value = num;
     });
 });
 
+btn_operator.forEach(element => {
+    element.addEventListener("click", (event) =>{
+        if(operator === ""){
+            num1 = Number(num);
+            operator = event.target.textContent;
+            num = "";
+        }else {
+            let temp_resualt = calculator(num1, operator, Number(num));
+            display.value = temp_resualt;
+            num1 = temp_resualt;
+            operator = event.target.textContent;
+            num = "";           
+        }
+  
+    });
+});
 
+equal.addEventListener("click", () =>{
+    let resualt = calculator(num1, operator, Number(num));
+    display.value = resualt;
+    num = "";
+    num1 = 0;
+    operator = "";
+    num = resualt;
+});
 
 const add = ((num1, num2) => num1 + num2);
 const sub = ((num1, num2) => num1 - num2);
@@ -31,8 +58,5 @@ const calculator = function (num1, operator, num2){
         return mul(num1, num2);
     }else if(operator === "/"){
         return div(num1, num2);
-    }else {
-        return console.log("Error! Enter correct math operator!");
-    } 
-    
+    }
 }
