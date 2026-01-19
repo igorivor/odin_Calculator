@@ -4,7 +4,8 @@ let operator = "";
 const btn_Numbers = document.querySelectorAll("#btn_Number");
 const display = document.querySelector("#display");
 const btn_operator = document.querySelectorAll("#btn_Operator");
-const equal = document.querySelector("#equal");
+const clear = document.querySelector("#delet");
+
 
 btn_Numbers.forEach(number => {
     number.addEventListener("click", (event) =>{
@@ -37,6 +38,13 @@ equal.addEventListener("click", () =>{
     num1 = 0;
     operator = "";
     num = resualt;
+});
+
+clear.addEventListener("click",  () =>{
+    display.value = ""
+    num = "";
+    num1 = 0;
+    operator = "";
 });
 
 const add = ((num1, num2) => num1 + num2);
