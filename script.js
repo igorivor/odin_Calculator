@@ -4,8 +4,10 @@ let operator = "";
 const btn_Numbers = document.querySelectorAll("#btn_Number");
 const display = document.querySelector("#display");
 const btn_operator = document.querySelectorAll("#btn_Operator");
-const clear = document.querySelector("#delet");
-
+const equal = document.querySelector("#equal");
+const all_Clear = document.querySelector("#all_Clear");
+const clear = document.querySelector("#clear");
+const comma = document.querySelector("#btn_Comma");
 
 btn_Numbers.forEach(number => {
     number.addEventListener("click", (event) =>{
@@ -40,12 +42,32 @@ equal.addEventListener("click", () =>{
     num = resualt;
 });
 
-clear.addEventListener("click",  () =>{
-    display.value = ""
+all_Clear.addEventListener("click",  () =>{
+    display.value = "";
     num = "";
     num1 = 0;
     operator = "";
 });
+
+clear.addEventListener("click", () =>{
+    if (operator === "") {
+        // Ako nema operatora, obrisi trenutni unos (num)
+        num = "";
+        display.value = "";
+    } else {
+        // Ako ima operatora, obrisi drugi broj (num)
+        num = "";;
+        display.value = "";
+    }
+});
+
+comma.addEventListener("click", () =>{
+    if(!num.includes(".")){
+        num += "."
+    }
+    display.value = num;
+});
+
 
 const add = ((num1, num2) => num1 + num2);
 const sub = ((num1, num2) => num1 - num2);
